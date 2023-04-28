@@ -1,0 +1,97 @@
+@import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@100;400;500&family=Big+Shoulders+Display:wght@200;500&family=Cute+Font&family=Cutive+Mono&family=Hubballi&family=Iceland&family=Supermercado+One&family=Syne+Mono&display=swap');
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    margin: 11px auto;
+    /* font-family: 'Courier New', Courier, monospace; */
+    font-size: 32px;
+    /* font-family: 'Barlow Condensed', sans-serif; */
+    font-family: 'Big Shoulders Display', cursive;
+    /* font-family: 'Cute Font', cursive; */
+    /* font-family: 'Cutive Mono', monospace; */
+    /* font-family: 'Hubballi', cursive; */
+    /* font-family: 'Iceland', cursive; */
+    /* font-family: 'Supermercado One', cursive; */
+    /* font-family: 'Syne Mono', monospace; */
+}
+
+#calcFrame {
+    margin: 1px auto;
+    width: 298px;
+    border: 2px solid darkslategray;
+    border-radius: 7.44px;
+    padding: 11px;
+    background-color: lightslategray;
+}
+
+#screen {
+    width: 256px;
+    background-color: aquamarine;
+    margin: 7px;
+    padding: 3px 7px;
+    text-align: right;
+    color: darkslategray;
+    border: 2px solid darkslategrey;
+    border-radius: 1px;
+
+}
+
+.sub {
+    display: flex;
+    justify-content: space-between;
+    width: 256px;
+    background-color: aquamarine;
+    margin: 7px;
+    padding: 3px 7px;
+    text-align: right;
+    color: darkslategray;
+    font-size: 16px;
+    border-radius: 1px;
+    border: 2px solid darkslategrey;
+}
+
+.row {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+/* .row:last-child {
+    justify-content:flex-start;
+} */
+
+button {
+    width: 44px;
+    padding: 11px 16px;
+    margin: 5.44px;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 24px;
+    font-weight: bold;
+    color: darkslategrey;
+    background-color: silver;
+    border: none;
+    border-radius: 2px;
+    box-shadow: 1px 1px 4.44px darkslategrey;
+    text-shadow: 0px 0px 2.44px lightgoldenrodyellow;
+    /* font-family: 'Barlow Condensed', sans-serif; */
+    /* font-family: 'Big Shoulders Display', cursive; */
+    /* font-family: 'Cute Font', cursive; */
+    /* font-family: 'Cutive Mono', monospace; */
+    /* font-family: 'Hubballi', cursive; */
+    /* font-family: 'Iceland', cursive; */
+    /* font-family: 'Supermercado One', cursive; */
+    /* font-family: 'Syne Mono', monospace; */
+}
+
+#numPad {
+    width: 253px;
+    margin: 11px auto;
+    padding: 5px;
+    background: indianred;
+    border-radius: 1 1 11px 11px;
+}
