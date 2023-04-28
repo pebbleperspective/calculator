@@ -1,4 +1,4 @@
-// JS calculator
+// JavaScript calculator
 // coded by: Gábor Parlag • pebbleperspective@gmail.com
 
 let display = document.getElementById("screen") // Főképernyő elem változóba mentése
