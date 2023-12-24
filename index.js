@@ -304,8 +304,11 @@ function add() {
         console.log("Szorzás volt az utolsó művelet") // Kompenzációja
         subEqualValue = subEqualValue * Number(displayValue) // művelet - simán csak összeszoroz
         subEqual.innerHTML = subEqualValue + "+"
-    } else if (lastAction == "/") {
+    } else if (lastAction == "÷") {
         console.log("Osztás volt az utolsó művelet")
+        subEqualValue = subEqualValue / Number(displayValue)
+        subEqual.innerHTML = subEqualValue + "÷"
+        subSum.innerHTML += displayValue + "÷"
     } else { // Ez az ág arra kell, ha nem volt előző
         subEqualValue = subEqualValue + Number(displayValue) // művelet - simán csak összead
         subEqual.innerHTML = subEqualValue + "+"
@@ -349,8 +352,11 @@ function remove() {
         console.log("Szorzás volt az utolsó művelet") // kompenzáció
         subEqualValue = subEqualValue * Number(displayValue) // művelet - simán csak összeszoroz
         subEqual.innerHTML = subEqualValue + "*"
-    } else if (lastAction == "/") {
+    } else if (lastAction == "÷") {
         console.log("Osztás volt az utolsó művelet")
+        subEqualValue = subEqualValue / Number(displayValue)
+        subEqual.innerHTML = subEqualValue + "÷"
+        subSum.innerHTML += displayValue + "÷"
     } else { // Ez az alapeset, ha nem volt előtte
         console.log("Ez az első művelet") // művelet
         if (subEqualValue == 0) {
@@ -397,8 +403,11 @@ function multiply() {
         subEqualValue = subEqualValue * Number(displayValue)
         subEqual.innerHTML = subEqualValue + "*"
         subSum.innerHTML += displayValue + "*"
-    } else if (lastAction == "/") {
+    } else if (lastAction == "÷") {
         console.log("Osztás volt az utolsó művelet")
+        subEqualValue = subEqualValue / Number(displayValue)
+        subEqual.innerHTML = subEqualValue + "*"
+        subSum.innerHTML += displayValue + "*"
     } else {
         subSum.innerHTML += displayValue + "*" // Kiiratjuk a műveletekhez balra
         // 0-val való szorzás logikai hibája miatt meg kell nézni, hogy a részösszegünk 0-e *** pl. első műveletnél
@@ -424,6 +433,63 @@ function multiply() {
     console.log("Ez lett beütve: " + displayValue)
     console.log("Ez a részösszeg: " + subEqualValue)
 }
+
+function divide() {
+    console.log("Osztás gomb megnyomva")
+    console.log("Előző memória: " + subEqualValue)
+    let lastChar = subEqual.innerHTML
+    let lastAction = lastChar.charAt(lastChar.length - 1)
+    console.log("Utolsó művelet: " + lastAction)
+
+    display.innerHTML = "0" // Lenullázzuk a főkijelzőt
+    
+    if (lastAction == "+") { // Ha az utolsó művelet (a subEqual
+        console.log("Összeadás volt az utolsó művelet") // utolsó karaktere) +, akkor hozzáadjuk
+        subEqualValue = subEqualValue + Number(displayValue) // a részeredményhez a kijelzőn levő
+        subEqual.innerHTML = subEqualValue + "*" // számot és aszerint változtatjuk
+        // a kiírt részeredményt
+        subSum.innerHTML += displayValue + "*"
+    } else if (lastAction == "-") {
+        console.log("Kivonás volt az utolsó művelet") // Ha kivonás volt azt utolsó eredmény,
+        subEqualValue = subEqualValue - Number(displayValue) // kilogikáztam, hogy újabb
+        subEqual.innerHTML = subEqualValue + "*" // kivonással jön ki a matek (:
+        subSum.innerHTML += displayValue + "*"
+    } else if (lastAction == "*") {
+        console.log("Szorzás volt az utolsó művelet")
+        subEqualValue = subEqualValue * Number(displayValue)
+        subEqual.innerHTML = subEqualValue + "*"
+        subSum.innerHTML += displayValue + "*"
+    } else if (lastAction == "÷") {
+        console.log("Osztás volt az utolsó művelet")
+        subEqualValue = subEqualValue / Number(displayValue)
+        subEqual.innerHTML = subEqualValue + "÷"
+        subSum.innerHTML += displayValue + "÷"
+    } else {
+        subSum.innerHTML += displayValue + "÷" // Kiiratjuk a műveletekhez balra
+        // 0-val való osztás logikai hibája miatt meg kell nézni, hogy a részösszegünk 0-e *** pl. első műveletnél
+        if (subEqualValue != 0) {
+            subEqualValue = subEqualValue / Number(displayValue) // művelet - simán csak összeszoroz
+            subEqual.innerHTML = subEqualValue + "÷"
+            display.innerHTML = "0"
+            
+            console.log("subEqualValue: " + subEqualValue + " - ez lett elmentve")
+        } else {
+            // Ha az elmentett vagy kezdő részeredményünk (subEqualValue), akkor nem azzal dolgozunk, hanem átadjuk neki
+            // a beütött szorzót (displayValue) és következő műveletnél elvégeztetjük a szorzást, addigra már a subEqualValue nem
+            // 0 lesz, így lefuthat az első kondíció
+            console.log("Ehhez mit szólsz?")
+            subEqual.innerHTML = displayValue + "÷"
+            subEqualValue = displayValue
+        }
+    }
+    
+    console.log("Ez az első művelet")
+    console.log("Most elmentve: " + subEqualValue)
+    console.log("A ÷ megnyomva")
+    console.log("Ez lett beütve: " + displayValue)
+    console.log("Ez a részösszeg: " + subEqualValue)
+}
+
 
 // Eredmény (=)
 function result() {
@@ -462,6 +528,13 @@ function result() {
         subSumValue = 0
         console.log("----------------")
         console.log("Megszoroztam")
+    } else if (lastAction == "÷") {
+        divide()
+        display.innerHTML = subEqualValue
+        sum = subEqualValue
+        subSumValue = 0
+        console.log("----------------")
+        console.log("Elosztottam")
     } else { // Ide jön majd a többi művelet meghívása
         console.log("Nem összeadás / kivonás / szorzás volt az utolsó művelet")
     }
